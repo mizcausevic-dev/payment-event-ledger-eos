@@ -1,6 +1,10 @@
 # Payment Event Ledger EOS
 
-Exactly-once payments backend that demonstrates the outbox pattern, CDC alignment, consumer checkpointing, and idempotency tracking without making local startup painful.
+Exactly-once payments backend that demonstrates the **Outbox Pattern**, CDC alignment, consumer checkpointing, and idempotency tracking without making local startup painful.
+
+> **What this repo proves**
+>
+> It is possible to make payment correctness, replay confidence, and dual-write discipline legible to operators instead of hiding them behind Kafka buzzwords.
 
 ## Why this repo is good
 
