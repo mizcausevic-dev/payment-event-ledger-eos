@@ -1,70 +1,40 @@
-﻿# Changelog
+# Changelog
 
 All notable changes to this project are documented here.
-
-This log is intentionally written as an engineering record rather than a launch theater timeline. Dates reflect when the concept, design, prototype, and public packaging phases were mature enough to document.
 
 ## [1.0.0] - 2026-05-12
 
 ### Released
-- Published **payment-event-ledger-eos** as a public, portfolio-grade event-driven revenue systems system.
-- Packaged the current implementation, documentation, validation workflow, and proof surfaces into a repo that could be reviewed by engineering, product, and operating stakeholders.
-- Tightened the repo story around the real-world operating problem: dual-write drift, event-order ambiguity, and poor downstream explainability in high-value operational systems.
+- Published **payment-event-ledger-eos** as the fintech event-correctness flagship in the portfolio.
+- Packaged the Outbox Pattern, Debezium CDC story, idempotency handling, and exactly-once verification surfaces into a reviewable system.
+- Positioned the repo around the dual-write problem rather than around generic "Kafka experience."
 
 ### Why this mattered
-- Existing approaches in stream processors, BI dashboards, and generic messaging infrastructure were useful for adjacent workflows.
-- They still missed the core need: an operating model for exactly-once behavior, replay confidence, and business-legible event evidence.
-- This release made the repo readable as an operational capability rather than a narrow technical demo.
+- Payment systems fail noisily when duplicates show up, but they fail expensively when reconciliation becomes ambiguous.
+- Existing messaging demos rarely make replay confidence or business evidence legible to operators.
+- This release made the repo useful to platform, fintech, and RevOps audiences evaluating event integrity.
 
-## [0.1.0] - 2026-02-14
+## [0.1.0] - 2026-02-21
 
 ### Shipped
-- Cut the first coherent internal version of the product shape behind **payment-event-ledger-eos**.
-- Standardized the core objects, decision surfaces, and operator outputs around the repo's main working problem.
-- Established the first reviewable version of the architecture described as: Kafka exactly-once payments backend with Outbox Pattern, Debezium CDC, and idempotency tracking.
+- Locked the first internal model for payment events, outbox records, replay verification, and idempotency evidence.
+- Added a verification surface that explained event integrity in business terms rather than in broker jargon.
 
-### Notes
-- This milestone was less about polish and more about proving the operating model.
-- The emphasis was on turning a messy domain problem into something a real team could reason about in CI, review, or day-to-day operations.
-
-## [Prototype] - 2025-02-11
+## [Prototype] - 2025-04-24
 
 ### Built
-- Created the first runnable prototype for the repo's core workflow and decision model.
-- Started validating the design against real operating pressures instead of idealized sample flows.
-- Added enough shape to test whether the project could surface action, not just information.
+- Prototyped the payment event flow around dual-write failure, ordering ambiguity, and downstream settlement questions.
+- Used the prototype to test whether event correctness could be narrated clearly for non-specialists.
 
-### Problem pressure
-- The prototype phase was shaped by concrete issues such as dual-write failure, idempotency drift, lagging attribution, and fraud-signal fragmentation.
-- This was the point where the project moved from a sketch into something worth hardening.
-
-## [Design Phase] - 2023-10-08
+## [Design Phase] - 2024-03-19
 
 ### Designed
-- Defined the core philosophy for the system:
-  - operator-first
-  - decision-legible
-  - CI- and review-friendly
-  - suitable for mixed technical and business audiences
-- Chose outputs that would make the repo useful to real operators instead of just visually impressive.
-- Focused the design on explainability, evidence, and next-best action rather than passive reporting.
+- Anchored the system around exactly-once pressure, not just stream throughput.
+- Chose operator-visible evidence paths over opaque transactional claims.
+- Framed the repo so business-critical event trust was as visible as transport mechanics.
 
-### Rejected approaches
-- Avoided turning the repo into a generic dashboard or CRUD exercise.
-- Avoided thin wrapper patterns that would hide the actual operating problem behind fashionable tooling choices.
-
-## [Idea Origin] - 2023-02-08
+## [Idea Origin] - 2023-06-06
 
 ### Observed
-- The initial idea surfaced while looking at how teams were handling dual-write drift, event-order ambiguity, and poor downstream explainability in high-value operational systems.
-- The recurring pattern was that people could often see fragments of the problem, but not the whole operational story in one place.
-
-### Insight
-- The missing product was not another point solution. It was a clearer operating layer that made the work legible to fintech, RevOps, and platform data teams.
-- That insight became the basis for **payment-event-ledger-eos**.
-
-## [Background Signals] - 2022-08-09
-
-### Context
-- Earlier platform, governance, and operator-tooling work made one pattern obvious: the dangerous systems are rarely the ones with no controls at all. They are the ones where controls exist, but are fragmented, weakly owned, and hard to read under pressure.
-- That pattern shaped this project long before the public repo existed.
+- The idea came from repeated cases where event-driven systems were technically sophisticated but operationally hard to trust after failure.
+- The missing product was a payment-event control layer that could make correctness reviewable.
