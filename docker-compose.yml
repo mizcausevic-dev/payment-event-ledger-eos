@@ -1,0 +1,55 @@
+services:
+  app:
+    build: .
+    ports:
+      - "4337:4337"
+    environment:
+      PORT: 4337
+
+  postgres:
+    image: postgres:16
+    profiles: ["event-stack"]
+    environment:
+      POSTGRES_DB: payments
+      POSTGRES_USER: payments
+      POSTGRES_PASSWORD: payments
+    ports:
+      - "5434:5432"
+
+  redpanda:
+    image: docker.redpanda.com/redpandadata/redpanda:v24.1.7
+    profiles: ["event-stack"]
+    command:
+      - redpanda
+      - start
+      - --overprovisioned
+      - --smp
+      - "1"
+      - --memory
+      - "1G"
+      - --reserve-memory
+      - "0M"
+      - --node-id
+      - "0"
+      - --check=false
+      - --kafka-addr
+      - PLAINTEXT://0.0.0.0:9092
+      - --advertise-kafka-addr
+      - PLAINTEXT://redpanda:9092
+    ports:
+      - "9092:9092"
+
+  connect:
+    image: debezium/connect:2.7
+    profiles: ["event-stack"]
+    depends_on:
+      - postgres
+      - redpanda
+    environment:
+      BOOTSTRAP_SERVERS: redpanda:9092
+      GROUP_ID: payment-ledger-connect
+      CONFIG_STORAGE_TOPIC: connect_configs
+      OFFSET_STORAGE_TOPIC: connect_offsets
+      STATUS_STORAGE_TOPIC: connect_status
+    ports:
+      - "8083:8083"

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>3.5.0</version>
+		<relativePath/> <!-- lookup parent from repository -->
+	</parent>
+	<groupId>com.mizcausevic</groupId>
+	<artifactId>payment-event-ledger-eos</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<name>payment-event-ledger-eos</name>
+	<description>Kafka exactly-once payments backend with Outbox Pattern, Debezium CDC, and idempotency tracking.</description>
+	<url>https://github.com/mizcausevic-dev/payment-event-ledger-eos</url>
+	<licenses>
+		<license/>
+	</licenses>
+	<developers>
+		<developer>
+			<name>Miz Causevic</name>
+			<url>https://kineticgain.com/</url>
+		</developer>
+	</developers>
+	<scm>
+		<connection>scm:git:https://github.com/mizcausevic-dev/payment-event-ledger-eos.git</connection>
+		<developerConnection>scm:git:ssh://git@github.com/mizcausevic-dev/payment-event-ledger-eos.git</developerConnection>
+		<tag>main</tag>
+		<url>https://github.com/mizcausevic-dev/payment-event-ledger-eos</url>
+	</scm>
+	<properties>
+		<java.version>21</java.version>
+	</properties>
+	<dependencies>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-actuator</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-validation</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+		</plugins>
+	</build>
+
+</project>
