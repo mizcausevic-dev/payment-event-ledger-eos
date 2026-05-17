@@ -34,7 +34,7 @@ Exactly-once payments backend that demonstrates the **Outbox Pattern**, CDC alig
 ## Local run
 
 ```powershell
-Set-Location "C:\Users\chaus\dev\repos\payment-event-ledger-eos"
+cd payment-event-ledger-eos
 $env:JAVA_HOME = "C:\Program Files\Microsoft\jdk-21.0.11.10-hotspot"
 $env:Path = "$env:JAVA_HOME\bin;$env:Path"
 .\mvnw.cmd spring-boot:run
